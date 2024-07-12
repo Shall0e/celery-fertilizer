@@ -168,25 +168,25 @@ if ($hostInput -eq "1") {
         Clear-Host
         betterPause -Message "Error: Celery is already installed, did you mean to repair?"
     } else {
-        powershell.exe -File (Join-Path $scriptDir "Options\install.ps1")
+        irm https://raw.githubusercontent.com/Shall0e/celery-fertilizer/desktop/Options/install.ps1 | iex
     }
 } elseif ($hostInput -eq "2") {
     if (Test-Path (Join-Path $localAppData "Celery") -PathType Container) {
-        powershell.exe -File (Join-Path $scriptDir "Options\repair.ps1")
+        irm https://raw.githubusercontent.com/Shall0e/celery-fertilizer/desktop/Options/repair.ps1 | iex
     } else {
         Clear-Host
         betterPause -Message "Error: Celery is not installed, did you mean to install it?"
     }
 } elseif ($hostInput -eq "3") {
     if (Test-Path (Join-Path $localAppData "Celery") -PathType Container) {
-        powershell.exe -File (Join-Path $scriptDir "Options\uninstall.ps1")
+        irm https://raw.githubusercontent.com/Shall0e/celery-fertilizer/desktop/Options/uninstall.ps1 | iex
     } else {
         Clear-Host
         betterPause -Message "Error: Celery is not installed, did you mean to install it?"
     }
 } elseif ($hostInput -eq "4") {
     if (Test-Path (Join-Path $localAppData "Celery") -PathType Container) {
-        powershell.exe -File (Join-Path $scriptDir "Options\advrepair.ps1")
+        irm https://raw.githubusercontent.com/Shall0e/celery-fertilizer/desktop/Options/advrepair.ps1 | iex
     } else {
         Clear-Host
         betterPause -Message "Error: Celery is not installed, did you mean to install it?"
