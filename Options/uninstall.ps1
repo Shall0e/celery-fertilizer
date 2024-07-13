@@ -1,6 +1,5 @@
 $roamingAppData = [System.Environment]::GetFolderPath([System.Environment+SpecialFolder]::ApplicationData)
 $localAppData = [System.Environment]::GetFolderPath([System.Environment+SpecialFolder]::localApplicationData)
-$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
 $ErrorActionPreference= 'silentlycontinue'
 $ProgressPreference = 'silentlycontinue'
 
@@ -13,7 +12,7 @@ function betterPause {
         Write-Host -ForegroundColor Red $Message
     }
     Write-Host ' '
-    Write-Host -ForegroundColor Magenta "(Press any key to go back)" -NoNewline
+    Write-Host -ForegroundColor Magenta "(Press Enter to go back)" -NoNewline
     $null = Read-Host
 }
 
@@ -65,6 +64,11 @@ Remove-MpPreference -ExclusionPath (Join-Path $localAppData "Celery")
 Remove-MpPreference -ExclusionPath (Join-Path $roamingAppData "Celery")
 Start-Sleep -Seconds 2
 Write-Host -ForegroundColor Green "Removed Windows Defender exclusions"
+
+if (Test-Path -Path ([System.IO.Path]::Combine([System.Environment]::GetFolderPath("Desktop"), "betterCelery Launcher.lnk"))) {
+    Remove-Item -Path ([System.IO.Path]::Combine([System.Environment]::GetFolderPath("Desktop"), "betterCelery Launcher.lnk")) -Force
+    Write-Host -ForegroundColor Green "Removed Desktop Icon"
+}
 
 Write-Host "Done! Sorry to see you go."
 

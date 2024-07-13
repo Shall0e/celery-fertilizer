@@ -1,5 +1,4 @@
 $roamingAppData = [System.Environment]::GetFolderPath([System.Environment+SpecialFolder]::ApplicationData)
-$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
 $ErrorActionPreference= 'silentlycontinue'
 $ProgressPreference = 'silentlycontinue'
 
@@ -12,9 +11,10 @@ function betterPause {
         Write-Host -ForegroundColor Red $Message
     }
     Write-Host ' '
-    Write-Host -ForegroundColor Magenta "(Press any key to go back)" -NoNewline
+    Write-Host -ForegroundColor Magenta "(Press Enter to go back)" -NoNewline
     $null = Read-Host
 }
+
 function Remove-FolderWithRetry {
     param(
         [Parameter(Mandatory=$true)]
